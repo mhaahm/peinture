@@ -11,6 +11,7 @@ pour un peintre
 * Symfony CLI
 * Docker
 * Docker-compose
+* nodejs
 
 Vous pouvez vérifier les pré-requis (sauf docker-compose )
 avec la commande suivante symfony 
@@ -19,6 +20,9 @@ avec la commande suivante symfony
 symfony check:requirements
 ```
 ```bash
+composer install
+npm install
+npm run build
 docker-compose up -d
 symfony serve -d
 ```
