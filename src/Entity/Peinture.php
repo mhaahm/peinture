@@ -73,7 +73,10 @@ class Peinture
      * @ORM\Column(type="string", length=255)
      */
     private $file;
-
+    /**
+     * @ORM\ManyToMany(targetEntity=Categorie::class, mappedBy="Relation")
+     */
+    private $categories;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="peintures")
@@ -89,6 +92,7 @@ class Peinture
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -265,6 +269,34 @@ class Peinture
             if ($commentaire->getPeinture() === $this) {
                 $commentaire->setPeinture(null);
             }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(self $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addRelation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(self $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeRelation($this);
         }
 
         return $this;

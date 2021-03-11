@@ -39,10 +39,7 @@ class Categorie
      */
     private $Relation;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Categorie::class, mappedBy="Relation")
-     */
-    private $categories;
+
 
     public function __construct()
     {
@@ -115,30 +112,5 @@ class Categorie
         return $this;
     }
 
-    /**
-     * @return Collection|self[]
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
 
-    public function addCategory(self $category): self
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
-            $category->addRelation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(self $category): self
-    {
-        if ($this->categories->removeElement($category)) {
-            $category->removeRelation($this);
-        }
-
-        return $this;
-    }
 }
