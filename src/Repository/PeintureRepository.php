@@ -47,4 +47,18 @@ class PeintureRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param int $nb
+     * @return Peinture[]
+     */
+    public function getLastPeinture(int $nb = 1):array
+    {
+        $peintures = $this->createQueryBuilder('p')
+            ->orderBy('p.id','desc')
+            ->setMaxResults($nb)
+            ->getQuery()
+            ->getResult();
+        return $peintures;
+    }
 }
