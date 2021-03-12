@@ -26,3 +26,9 @@ npm run build
 docker-compose up -d
 symfony serve -d
 ```
+
+### Ajouter des données de fixture
+Il faut lancer la commande 
+```bash
+symfony console d:f:l
+```

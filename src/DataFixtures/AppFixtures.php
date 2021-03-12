@@ -66,7 +66,7 @@ class AppFixtures extends Fixture
                 $peinture->setDateRealisation($faker->dateTimeBetween('-6 month','now'));
                 $peinture->setCreatedAt($faker->dateTimeBetween('-6 month','now'));
                 $peinture->getPortfolio($faker->randomElement([true,false]));
-                $peinture->setFile("/style/images/1.jpg");
+                $peinture->setFile("build/img/values-1.png");
                 $peinture->setPrix($faker->randomFloat(2,100,200));
                 $peinture->setUser($user);
                 $peinture->setPortfolio($faker->randomElement([true,false]));
