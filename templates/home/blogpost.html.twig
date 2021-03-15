@@ -2,11 +2,12 @@
 
     <div class="container" data-aos="fade-up">
 
-        <header class="section-header">
-            <h2>Dernières actualités</h2>
-            <p>Recent posts form our Blog</p>
-        </header>
-
+        {% if not all %}
+            <header class="section-header">
+                <h2>Dernières actualités</h2>
+                <p>Recent posts form our Blog</p>
+            </header>
+        {% endif %}
         <div class="row">
            {% for post in blogPosts %}
                 <div class="col-lg-4">

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PeintureController!{% endblock %}
+
+{% block body %}
+    <section id="team" class="team">
+        <header class="section-header">
+            <h2>Les dernières réalisations </h2>
+            <p>Our hard working team</p>
+        </header>
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
+                {% for peinture in peintures %}
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="{{ asset(peinture.file) }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>{{ peinture.nom }}</h4>
+                                <span>{{ peinture.dateRealisation|date('Y-m-d H:i:s') }}</span>
+                                <p>{{ peinture.description|u.truncate(200,'...',true) }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+            {% do peintures.setPageRange(2) %}
+            {{ knp_pagination_render(peintures,'partiels/pagination.html.twig') }}
+        </div>
+        <div class="row gy-4">
+
+        </div>
+    </section>
+{% endblock %}

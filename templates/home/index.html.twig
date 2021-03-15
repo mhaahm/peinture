@@ -5,5 +5,5 @@
 {% block body %}
     {% include "home/welcome.html.twig" %}
     {% include "home/realisation.html.twig" %}
-    {% include "home/blogpost.html.twig" %}
+    {% include "home/blogpost.html.twig" with {all:false} %}
 {% endblock %}
