@@ -7,7 +7,8 @@
 import AOS from "aos"
 import Swiper from "swiper"
 import GLightbox from "glightbox"
-import Isotop from "isotope-layout"
+import Isotope from "isotope-layout"
+
 (function() {
   "use strict";
 

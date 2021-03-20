@@ -89,6 +89,12 @@ class Peinture
      */
     private $commentaires;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="peintures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
@@ -298,6 +304,18 @@ class Peinture
         if ($this->categories->removeElement($category)) {
             $category->removeRelation($this);
         }
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

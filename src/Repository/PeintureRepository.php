@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Categorie;
 use App\Entity\Peinture;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -60,5 +61,18 @@ class PeintureRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
         return $peintures;
+    }
+
+    /**
+     * @param Categorie $categorie
+     */
+    public function getPortfolioPeinture(Categorie $categorie)
+    {
+        $this->createQueryBuilder('p')
+            ->where(':categorie MEMBER of p.categorie')
+            ->andWhere('p.portfolio =true')
+            ->setParameter('categorie',$categorie)
+            ->getQuery()
+            ->getResult();
     }
 }

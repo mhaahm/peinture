@@ -35,6 +35,7 @@ class AppFixtures extends Fixture
         $user->setAPropos($faker->text());
         $user->setInstagram('instagram');
         $user->setPassword($this->encoder->encodePassword($user,'peinture'));
+        $user->setRoles(['ROLE_PEINTRE']);
         $manager->persist($user);
 
         for($i = 0; $i<10;$i++)
@@ -70,6 +71,7 @@ class AppFixtures extends Fixture
                 $peinture->setPrix($faker->randomFloat(2,100,200));
                 $peinture->setUser($user);
                 $peinture->setPortfolio($faker->randomElement([true,false]));
+                $peinture->setCategorie($categ);
                 $manager->persist($peinture);
                 $manager->persist($categ);
             }

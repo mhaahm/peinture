@@ -23,6 +23,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
+     * @return int|mixed|string|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getPeintre()
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.roles like :roles')
+            ->setParameter('roles','%"ROLE_PEINTRE"%')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
     public function upgradePassword(UserInterface $user, string $newEncodedPassword): void

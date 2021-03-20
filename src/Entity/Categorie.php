@@ -35,16 +35,15 @@ class Categorie
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="categories")
+     * @ORM\OneToMany(targetEntity=Peinture::class, mappedBy="categorie")
      */
-    private $Relation;
-
+    private $peintures;
 
 
     public function __construct()
     {
         $this->Relation = new ArrayCollection();
-        $this->categories = new ArrayCollection();
+        $this->peintures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,25 +88,31 @@ class Categorie
     }
 
     /**
-     * @return Collection|self[]
+     * @return Collection|Peinture[]
      */
-    public function getRelation(): Collection
+    public function getPeintures(): Collection
     {
-        return $this->Relation;
+        return $this->peintures;
     }
 
-    public function addRelation(self $relation): self
+    public function addPeinture(Peinture $peinture): self
     {
-        if (!$this->Relation->contains($relation)) {
-            $this->Relation[] = $relation;
+        if (!$this->peintures->contains($peinture)) {
+            $this->peintures[] = $peinture;
+            $peinture->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeRelation(self $relation): self
+    public function removePeinture(Peinture $peinture): self
     {
-        $this->Relation->removeElement($relation);
+        if ($this->peintures->removeElement($peinture)) {
+            // set the owning side to null (unless already changed)
+            if ($peinture->getCategorie() === $this) {
+                $peinture->setCategorie(null);
+            }
+        }
 
         return $this;
     }
