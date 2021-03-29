@@ -14,10 +14,10 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="member">
                             <div class="member-img">
-                                <img src="{{ asset(peinture.file) }}" class="img-fluid" alt="">
+                                    <img src="{{ asset(peinture.file) }}" class="img-fluid" alt="">
                             </div>
                             <div class="member-info">
-                                <h4>{{ peinture.nom }}</h4>
+                                <a href="{{ path('detail_realisation',{slug: peinture.slug}) }}"> <h4>{{ peinture.nom }}</h4></a>
                                 <span>{{ peinture.dateRealisation|date('Y-m-d H:i:s') }}</span>
                                 <p>{{ peinture.description|u.truncate(200,'...',true) }}</p>
                             </div>
