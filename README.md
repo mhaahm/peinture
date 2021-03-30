@@ -25,6 +25,7 @@ npm install
 npm run build
 docker-compose up -d
 symfony serve -d
+symfony console peintre:send-mail
 ```
 
 ### Ajouter des données de fixture

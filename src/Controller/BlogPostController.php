@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\BlogPost;
 use App\Repository\BlogPostRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,6 +20,16 @@ class BlogPostController extends AbstractController
         $actualites = $blogPostRepository->findAll();
         return $this->render('blog_post/index.html.twig', [
             'blogPosts' => $paginator->paginate($actualites,$request->query->getInt('page',1),6),
+        ]);
+    }
+
+    /**
+     * @Route("/blogPost/{slug}", name="blog_post")
+     */
+    public function actualiteDetail(BlogPost $blogPost)
+    {
+        return $this->render('blog_post/detail.html.twig', [
+            'blogPost' => $blogPost
         ]);
     }
 }
