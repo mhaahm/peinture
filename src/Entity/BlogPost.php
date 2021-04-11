@@ -34,10 +34,6 @@ class BlogPost
      */
     private $slug;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $date;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="blogpost")
@@ -49,6 +45,11 @@ class BlogPost
      * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="blogpost")
      */
     private $commentaires;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     public function __construct()
     {
@@ -96,18 +97,6 @@ class BlogPost
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -146,6 +135,18 @@ class BlogPost
                 $commentaire->setBlogpost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

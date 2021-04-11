@@ -2,6 +2,8 @@
 
 namespace App\Tests;
 
+use App\Entity\BlogPost;
+use App\Entity\Peinture;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
@@ -44,14 +46,32 @@ class UserUnitTest extends TestCase
         $this->assertFalse($user->getInstagram() === 'mohamed1');
         $this->assertFalse($user->getPassword() === 'MHAA');
         $this->assertFalse($user->getPrenom() === 'mhaa');
+        $peinture = new Peinture();
+        $user->addPeinture($peinture);
+        $this->assertContains($peinture,$user->getPeintures());
+        $user->removePeinture($peinture);
+        $this->assertNotContains($peinture,$user->getPeintures());
+
+        $post = new BlogPost();
+        $user->addBlogpost($post);
+        $this->assertContains($post,$user->getBlogpost());
+        $user->removeBlogpost($post);
+        $this->assertNotContains($post,$user->getBlogpost());
     }
 
     public function testIsEmpty()
     {
         $user = new User();
+        $user->setRoles([]);
         $this->assertEmpty($user->getPrenom());
         $this->assertEmpty($user->getNom());
         $this->assertEmpty($user->getTelephone());
         $this->assertEmpty($user->getPassword());
+        $this->assertEmpty($user->getId());
+        $this->assertEmpty($user->getPeintures());
+        $this->assertNotEmpty($user->getRoles());
+        $this->assertEmpty($user->getUsername());
+        $this->assertEmpty($user->getSalt());
+        $this->assertEmpty($user->eraseCredentials());
     }
 }

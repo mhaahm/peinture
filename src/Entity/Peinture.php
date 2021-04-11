@@ -289,22 +289,18 @@ class Peinture
         return $this->categories;
     }
 
-    public function addCategory(self $category): self
+    public function addCategory(Categorie $category): self
     {
         if (!$this->categories->contains($category)) {
             $this->categories[] = $category;
-            $category->addRelation($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(self $category): self
+    public function removeCategory(Categorie $category): self
     {
-        if ($this->categories->removeElement($category)) {
-            $category->removeRelation($this);
-        }
-
+        $this->categories->removeElement($category);
         return $this;
     }
 

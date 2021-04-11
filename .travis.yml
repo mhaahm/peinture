@@ -1,6 +1,11 @@
 language: php
 php:
   - '7.4'
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS peinture_test;'
 
 script:
   - composer install

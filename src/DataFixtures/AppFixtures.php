@@ -11,6 +11,11 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Class AppFixtures
+ * @package App\DataFixtures
+ * @codeCoverageIgnore
+ */
 class AppFixtures extends Fixture
 {
 
@@ -45,9 +50,18 @@ class AppFixtures extends Fixture
             $blogPost->setContenu($faker->text());
             $blogPost->setSlug($faker->slug(3));
             $blogPost->setUser($user);
-            $blogPost->setDate(new \DateTime());
+            $blogPost->setCreatedAt(new \DateTime());
             $manager->persist($blogPost);
         }
+
+        $blogPost = new BlogPost();
+        $blogPost->setTitre('Test blogpost');
+        $blogPost->setContenu($faker->text());
+        $blogPost->setSlug('Test-blogpost');
+        $blogPost->setCreatedAt(new \DateTime());
+        $blogPost->setUser($user);
+        $manager->persist($blogPost);
+
         for ($k = 0; $k <5 ;$k++)
         {
             $categ = new Categorie();
@@ -76,6 +90,28 @@ class AppFixtures extends Fixture
                 $manager->persist($categ);
             }
         }
+
+        $categ = new Categorie();
+        $categ->setNom('Categorie test');
+        $categ->setDescription($faker->word());
+        $categ->setSlug('Categorie-test');
+        $manager->persist($categ);
+        $peinture = new Peinture();
+        $peinture->setSlug('peinture-test');
+        $peinture->setNom('peinture test');
+        $peinture->setLargeur($faker->randomFloat(2,20,60));
+        $peinture->setHauteur($faker->randomFloat(2,20,60));
+        $peinture->setEnVente($faker->randomElement([true,false]));
+        $peinture->setDescription($faker->text());
+        $peinture->setDateRealisation($faker->dateTimeBetween('-6 month','now'));
+        $peinture->setCreatedAt($faker->dateTimeBetween('-6 month','now'));
+        $peinture->getPortfolio($faker->randomElement([true,false]));
+        $peinture->setFile("build/img/values-1.png");
+        $peinture->setPrix($faker->randomFloat(2,100,200));
+        $peinture->setPortfolio($faker->randomElement([true,false]));
+        $peinture->setCategorie($categ);
+        $peinture->setUser($user);
+        $manager->persist($peinture);
 
 
 
