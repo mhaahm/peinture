@@ -1,6 +1,10 @@
-language: php
+language:
+  - php
+  - node_js
 php:
   - '7.4'
+node_js:
+  - 12
 services:
   - mysql
 
