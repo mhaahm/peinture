@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 
 class BlogPostCrudController extends AbstractCrudController
 {
@@ -22,7 +23,8 @@ class BlogPostCrudController extends AbstractCrudController
             TextField::new('Titre'),
             TextField::new('slug')->hideOnForm(),
             TextareaField::new('Contenu'),
-            DateField::new('createdAt')->hideOnForm()
+            DateField::new('createdAt')->hideOnForm(),
+            SlugField::new('slug')->setTargetFieldName('Titre')->hideOnIndex(),
         ];
     }
 

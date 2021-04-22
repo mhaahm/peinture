@@ -17,6 +17,8 @@
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
+/public/uploades/peinture_imagess/*
+!/public/uploades/peinture_images/values.png
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###

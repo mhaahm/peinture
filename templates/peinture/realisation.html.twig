@@ -14,7 +14,7 @@
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="member">
                             <div class="member-img">
-                                    <img src="{{ asset(peinture.file) }}" class="img-fluid" alt="">
+                                    <img src="{{ vich_uploader_asset(peinture,'imageFile') }}" class="img-fluid" alt="">
                             </div>
                             <div class="member-info">
                                 <a href="{{ path('detail_realisation',{slug: peinture.slug}) }}"> <h4>{{ peinture.nom }}</h4></a>

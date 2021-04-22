@@ -18,7 +18,7 @@ class PeintureController extends AbstractController
      */
     public function index(PeintureRepository $peintureRepository,PaginatorInterface $paginator,Request $request): Response
     {
-        $peintures = $peintureRepository->findAll();
+        $peintures = $peintureRepository->findBy([],['id' => 'DESC']);
         return $this->render('peinture/realisation.html.twig', [
             'peintures' => $paginator->paginate($peintures,$request->query->getInt('page',1),self::NB_PER_PAGE),
 

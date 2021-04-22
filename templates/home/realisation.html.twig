@@ -11,7 +11,7 @@
              {% for peinture in peintures %}
                         <div class="col-lg-4">
                             <div class="box" data-aos="fade-up" data-aos-delay="200">
-                                <img src="{{ asset(peinture.file) }}" class="img-fluid" alt="">
+                                <img src="{{ vich_uploader_asset(peinture,'imageFile') }}" class="img-fluid" alt="">
                                 <h3>{{ peinture.nom }}</h3>
                                 <p>{{ peinture.description|u.truncate(200,true) }}</p>
                             </div>
