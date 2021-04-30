@@ -29,7 +29,7 @@
                         {% if peinture.portfolio %}
                             <div class="col-lg-4 col-md-6 portfolio-item filter-{{ categorie.id }}">
                                 <div class="portfolio-wrap">
-                                    <img src="{{ vich_uploader_asset(peinture,'imageFile') }}" class="img-fluid" alt="">
+                                    <img src="{{ vich_uploader_asset(peinture,'imageFile')|imagine_filter('full') }}" class="img-fluid" alt="">
                                     <div class="portfolio-info">
                                         <h4>{{ categorie.nom }}</h4>
                                         <p>{{ peinture.nom }}</p>
