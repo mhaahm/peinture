@@ -1,11 +1,15 @@
 <?php
 namespace App\Services;
 
+use App\Entity\BlogPost;
+use App\Entity\Commentaire;
 use App\Entity\Contact;
+use App\Entity\Peinture;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
-class ContactService {
+class CommentService {
     /**
      * @var EntityManagerInterface
      */
@@ -29,32 +33,22 @@ class ContactService {
     /**
      * @param Contact $contact
      */
-    public function saveContact(Contact $contact):void
+    public function saveComment(
+        Commentaire $comment,
+        ?BlogPost $blogPost = null,
+        ?Peinture $peinture = null):void
     {
         try {
-            $contact->setIsSent(false);
-            $contact->setCreatedAt(new \DateTime());
-            $this->em->persist($contact);
+            $comment->setIsPublished(false);
+            $comment->setCreatedAt(new \DateTime());
+            $comment->setBlogpost($blogPost);
+            $comment->setPeinture($peinture);
+            $this->em->persist($comment);
             $this->em->flush();
-            $this->flashBag->add('success','Votre message est bien envoyé avec success');
+            $this->flashBag->add('success','Votre commentaire est bien enregistré avec success');
         } catch (\Exception $e) {
-            $this->flashBag->add('error','Erreur d\'envoi du message');
+            $this->flashBag->add('error','Erreur d\'enregistrement du commentaire');
         }
 
-    }
-
-    /**
-     * @param Contact $contact
-     * @throws Exception
-     */
-    public function setSendedContact(Contact $contact)
-    {
-        try{
-            $contact->setIsSent(true);
-            $this->em->persist($contact);
-            $this->em->flush();
-        } catch(\Exception $e) {
-            throw $e;
-        }
     }
 }

@@ -54,7 +54,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $a_propos;
+    private $apropos;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -71,10 +71,21 @@ class User implements UserInterface
      */
     private $blogpost;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $aproposSummar;
+
     public function __construct()
     {
         $this->peintures = new ArrayCollection();
         $this->blogpost = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -196,12 +207,12 @@ class User implements UserInterface
 
     public function getAPropos(): ?string
     {
-        return $this->a_propos;
+        return $this->apropos;
     }
 
-    public function setAPropos(?string $a_propos): self
+    public function setAPropos(?string $apropos): self
     {
-        $this->a_propos = $a_propos;
+        $this->apropos = $apropos;
 
         return $this;
     }
@@ -274,6 +285,30 @@ class User implements UserInterface
                 $blogpost->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->createdAt = $created_at;
+
+        return $this;
+    }
+
+    public function getAproposSummar(): ?string
+    {
+        return $this->aproposSummar;
+    }
+
+    public function setAproposSummar(?string $aproposSummar): self
+    {
+        $this->aproposSummar = $aproposSummar;
 
         return $this;
     }

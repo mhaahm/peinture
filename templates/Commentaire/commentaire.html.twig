@@ -1,0 +1,18 @@
+{% for com in commentaires %}
+<div class="comment">
+                <div class="d-flex">
+                  <div>
+                   <div class="entry-meta">
+                        <ul>
+                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">{{ com.auteur }}</a></li>
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{ com.createdAt|date('M Y')}}</time></a></li>
+                        
+                        </ul>
+                    </div>
+                    <p>
+                        {{ com.contenu }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+{% endfor %}

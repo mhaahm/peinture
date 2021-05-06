@@ -13,9 +13,12 @@
                         <p>
                             {{ blogPost.contenu }}
                         </p>
+                        {% include "Commentaire/commentaire.html.twig" %}
+                        <p><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Laisser un commentaire</button></p>
                     </div>
                 </article>
             </div>
         </div>
     </section>
+    {%  include "commentaire/form.html.twig" %}
 {% endblock %}
